@@ -32,12 +32,7 @@ public class Ejercicio2 {
         Vendedor v1 = new Vendedor(101,"jorge");
         Ventas ve1 =new Ventas(3,0,0,t1,v1,f1,producto);
         System.out.println(ve1);
-        
-        
-        
-        
-       
-        
+        v1.ventasrealizadas(producto, ve1);
     }
     
 }

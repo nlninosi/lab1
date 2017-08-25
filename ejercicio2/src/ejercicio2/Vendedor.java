@@ -29,8 +29,9 @@ public class Vendedor {
     public String setnombre(String i){
         return this.nombre =i;
     }
-    public void ventasrealizadas(Producto producto, Venta venta){
+    public void ventasrealizadas(Producto producto, Ventas venta){
         if(producto==venta.producto){
+            System.out.println("El vendedor ya realizo la venta de este preducto:")
             System.out.println(venta);
         }else{
             System.out.println("El vendedor no ha realizado la venta de ese producto");
