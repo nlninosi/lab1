@@ -29,7 +29,7 @@ public class Vendedor {
     public String setnombre(String i){
         return this.nombre =i;
     }
-    public void ventasrealizadas(Producto producto){
+    public void ventasrealizadas(Producto producto, Venta venta){
         if(producto==venta.producto){
             System.out.println(venta);
         }else{
