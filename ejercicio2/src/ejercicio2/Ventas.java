@@ -17,7 +17,10 @@ public class Ventas {
     public Vendedor vendedor;
     public Formapago formapago;
     public Producto producto;
-    
+    public static Integer numObjetos;
+    public int Realizadas(){
+     return numObjetos = numObjetos==null? 1: (numObjetos+1);
+    }
     public Ventas(int cant,double total, double descuentos, Tiempo tiempo, Vendedor vendedor, Formapago formapago, Producto producto){
         this.cantvendida=cant;
         this.total=total;
@@ -72,8 +75,6 @@ public class Ventas {
      public void factura(Tiempo tiempo, Producto producto, Vendedor vendedor, Formapago formapago,int cantvendida,double total, double descuentos){
         total=producto.preciouni*cantvendida;
         System.out.println("Factura {Codigo producto:"+producto.codigo+" ,Tiempo:"+tiempo+" ,Vendedor:"+vendedor+" ,Forma de pago"+formapago+" ,Cantidad vendida"+cantvendida+" ,Descuentos"+descuentos+" ,Total"+total+"}");
-        
-        
     }
     @Override
     public String toString(){
@@ -82,3 +83,4 @@ public class Ventas {
         
     }
 }
+
