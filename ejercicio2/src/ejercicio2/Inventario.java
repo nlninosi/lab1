@@ -11,48 +11,29 @@ import java.util.*;
  *
  * @author Nicolas
  */
-public class Producto {
-    private int codigo;
-    private double precioventa;
-    private double preciocompra;
+public class Inventario {
+    private ArrayList<Producto> productos;
+    private ArrayList<Proveedores> proveedores;
     private ArrayList<Pedido> pedidos;
     private ArrayList<Venta> ventas;
-    private ArrayList<Proveedores> proveedores;
-    private int cantidad;
-    public Producto(double precioventa, double preciocompra, int cantidad){
-        this.cantidad=cantidad;
-        this.preciocompra=preciocompra;
-        this.precioventa=precioventa;
+    private double gastos;
+    private double ganancias;
+    public Inventario(){
+        this.productos = new ArrayList<>();
         this.pedidos = new ArrayList<>();
         this.ventas = new ArrayList<>();
         this.proveedores = new ArrayList<>();
+        this.ganancias=0;
+        this.gastos=0;
     }
-    public double getPrecioventa() {
-        return precioventa;
+   public boolean addProducto(Producto producto){
+        if(this.productos.add(producto)==true){
+            return true;
+        }else{
+            return false;
+        }
     }
-    public void setPrecioventa( double precioventa) {
-        this.precioventa = precioventa;
-    }
-    public double getPreciocompra() {
-        return preciocompra;
-    }
-
-    public void setPreciocompra( double preciocompra) {
-        this.preciocompra = preciocompra;
-    }
-    public int getCantidad() {
-        return cantidad;
-    }
-    public void setCantidad( int cantidad) {
-        this.cantidad = cantidad;
-    }
-    public int getCodigo() {
-        return codigo;
-    }
-    public void setCodigo( int codigo) {
-        this.codigo = codigo;
-    }
-    public boolean addProveedores(Proveedores proveedores){
+   public boolean addProveedores(Proveedores proveedores){
         if(this.proveedores.add(proveedores)==true){
             return true;
         }else{
@@ -73,13 +54,19 @@ public class Producto {
             return false;
         }
     }
-    public void listarProveedores(){
+   public void listarProductos(){
+       ArrayList<Producto> productos=this.productos;
+       for (Producto producto: productos) {
+                System.out.println(""+producto.getCantidad()+" "+producto.getPreciocompra()+"");
+            }
+   }
+   public void listarProveedores(){
        ArrayList<Proveedores> proveedores=this.proveedores;
        for (Proveedores proveedor: proveedores) {
                 System.out.println(proveedor.getNombre());
             }
    }
-     public void listarPedidos(){
+   public void listarPedidos(){
        ArrayList<Pedido> pedidos=this.pedidos;
        for (Pedido pedido: pedidos) {
                 System.out.println(pedido.getOrdenado());
@@ -91,5 +78,23 @@ public class Producto {
                 System.out.println(venta.getComprado());
             }
    }
-    
+   public void registrarPedido(Proveedores proveedor,int ordenado,Producto producto){
+       int a=producto.getCantidad();
+       Pedido p= new Pedido(proveedor,ordenado,producto);
+       a-=ordenado;
+       producto.setCantidad(a);
+       double b=producto.getPreciocompra();
+       p.costo=b*ordenado;
+       this.gastos+=b*ordenado;
+   }
+   public void registrarVenta(int compra,Producto producto){
+       int a=producto.getCantidad();
+       Venta p= new Venta(compra,producto);
+       a+=compra;
+       producto.setCantidad(a);
+       double b=producto.getPreciocompra();
+       p.ganancia=b*compra;
+       this.ganancias+=b*compra;
+   }
 }
+

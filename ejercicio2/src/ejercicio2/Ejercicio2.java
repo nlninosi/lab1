@@ -5,8 +5,6 @@
  */
 package ejercicio2;
 
-import java.util.Scanner;
-
 /**
  *
  * @author Nicolas
@@ -18,29 +16,14 @@ public class Ejercicio2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Scanner flujo = new Scanner(System.in);
-        System.out.println("Creacion de Producto");
-        int i = flujo.nextInt();
- 
-        System.out.println("Creacion de Producto");
-        System.out.println("Codigo Producto");
-        int codigo = flujo.nextInt();
-        System.out.println("Descripcion Producto");
-        String descripcion= flujo.next();
-        System.out.println("Precio unitario Producto");
-        double preciouni = flujo.nextDouble();
-        Producto producto = new Producto(codigo,descripcion,preciouni);
-        
-        Formapago f1 = new Formapago(true,false,false);
-        Tiempo t1 = new Tiempo(2017,4,30,12);
-        Vendedor v1 = new Vendedor(101,"jorge","martinez");
-        Ventas ve1 =new Ventas(3,0,0,t1,v1,f1,producto);
-        Ventas ve2 =new Ventas(3,0,0,t1,v1,f1,producto);
-        System.out.println(ve1);
-        
-        v1.ventasrealizadas(producto, ve1);
-        
-        
+        Producto p1= new Producto(3,3,3);
+        Producto p2= new Producto(3,3,3);
+        Proveedores v1=new Proveedores("a");
+        Inventario i1= new Inventario();
+        i1.addProducto(p1);
+        i1.addProducto(p2);
+        i1.listarProductos();
+        i1.registrarPedido(v1, 0, p2);
     }
     
 }
